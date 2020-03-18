@@ -1,0 +1,65 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+
+    <style>
+      body{
+        background: #eee;
+      }
+      form{
+        max-width: 200px;
+        margin: 40px auto;
+        background: white;
+        padding: 10px;
+      }
+      input{
+        display:block;
+        margin:10px auto;
+        padding: 4px;
+      }
+    </style>
+
+  </head>
+
+    <body>
+
+    <h1 id="page-title" style="color:orange;">The DOM</h1>
+    <ul class="people"></ul>
+    <p>This is a FIRST text in a paragraph (before manipulating the DOM).</p>
+    <p class="error"> This is a first error!</p>
+    <p>This is a 2ond paragraph</p>
+    <p>This is a 3rd paragraph</p>
+    <div class"error">This is second error!!</div>
+    <div class"error">This is a third error!!!</div>
+    <div class="content">This is a content</div>
+    <a href="https://www.google.com">Link to somewhere cool...</a>
+    <p class="error">lorem ipsum</p>
+    <p class="error">Learning to manipulated the html class element</p>
+
+    <h1 class="title">Challenge</h1>
+    <p>lorem error ipsum</p>
+    <p>lorem success ipsum</p>
+    <p>lorem ipsum lorem</p>
+    <p>lorem ipsum success</p>
+    <p>error lorem ipsum</p>
+    <p>lorem ipsum lorem</p>
+    <p>lorem ipsum error</p>
+    <p>success lorem ipsum</p>
+    
+    <h1>Form: Udemy - Section7: Forms & From Events</h1>
+
+    <form class="signup-form">
+      <input type="text" id="username" placeholder="username">
+      <input type="submit" value="submit"> <!--This fires a submit event in JavaScript-->
+      <div class="feedback"></div>
+    </form>
+    <script src="sandbox.js"></script>
+    <!-- only call JS after parsing all the html code so tha the whole DOM is completely generated.
+    Alternatively, insert the attribut defer in the script opening tag so that the script will wait until
+    the whole html page is completely BEFORE before making the call to the script -->
+  </body>
+</html>
+
