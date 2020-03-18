@@ -554,65 +554,77 @@ const username = document.querySelector('#username'); // we leverage id="usernam
 
 // this eventListener is listning for an event of type submit: notice we do not listen to the buton but to the form;
 // this is better than listening for an event of type click: because the submit type of event includes, the intro key.
-form.addEventListener('submit', e => {  // callback function  ## ¿ERROR PENDING TO RESOLVE!!??
+form.addEventListener('submit', e => {  // callback function.
       e.preventDefault(); 
-      // The 1st thing that happen when clicking the HTML submit button is the refresh of the page. We want to prevent this refresh action because we want to control/handle the submit event in our own way (not letting the default way the browswer does it).
+      // The 1st thing happening when clicking the HTML submit button is the refresh of the page. We want to prevent this refresh action because we want to control/handle the submit event in our own way (not letting the default way the browswer does it).
       // To get the data from the form fiel--> get ref to field with the above query based on id="username" (in html code)
-          console.log(username.value); // gets the value populated by a user in the field.
+          console.log(`The super-user-name entered is ${username.value}!!!`); // gets the value populated by a user in the field.
       }
   );
 
 // Another way to get the value of a field, instead of having to querySelector with its ID:
-//console.log(form.username); // username is considered a property of the object form
+//console.log(form.username); // username is considered a property of the object form (Pending to verify)
 
-// Validation rules with JavaScript and Regular Expressions (RegEx) (Tutorial #7 - item #60)
+// #### Validation rules with JavaScript and Regular Expressions (RegEx) (Tutorial #7 - item #60)
 // Free 16 videos on youtube focused on RegEx: https://youtu.be/r6I-Ahc0HB4 
-// RegEx start with a forward slash and also end with a foward slash; the 2 letters afterwards are called flags.
+// RegEx starts and ends with a forward slash; the 2 letters afterwards are called flags (WHAT ARE THESE FOR?).
 // To validate a single string (without any characters before or after the string) use a combination of the circumflex accent before the word and the dollar sign at the end: ^ninja$
-// Validate any letter from a to z (1 character): use a character set insed square brackets: [a-z], so now you have /^[a-z]$/
-// Valildate any letter between c and e: /^[c-e]$/
-// To Validate capital letters as well: /^[a-zA-Z]$/
-// To validate words that are from 6 to 10 characters long --> curly brackets /^[a-zA-Z]{6,10}$/
-// To factor in numbers in the validation: add them within the square brackets /^[a-zA-Z0-9]{6,10}$/
+// Validate (enforece) any letter from a to z (only 1 character): use a character set in square brackets: [a-z], so now you have /^[a-z]$/
+// Validate any letter between c and e: /^[c-e]$/
+// Validate capital letters: /^[a-zA-Z]$/
+// Validate words to have 6 to 10 characters long --> curly brackets /^[a-zA-Z]{6,10}$/
+// To include numbers in the validation: add them within the square brackets /^[a-zA-Z0-9]{6,10}$/
 
-// The Dot meaning in RegEx: it means any characters, ex: /^.{6-10}$/  this means: any character of length btw 6 and 10
+// Dot meaning in RegEx: it means any characters, ex: /^.{6-10}$/  this means: any length of between 6 and 10 characters.
 
-
-// Testing RegEx patterns (Tutorial #7 - item #61) - Implementing it in a JavaScript file
+// #### Testing RegEx patterns in JS (Tutorial #7 - item #61) - Implementing it in a JavaScript file:
+const form1 = document.querySelector('.signup-form');
 const username1 = 'shaunp';
 const pattern = /^[a-z]{6,}$/; // validation rule: accept any character with minimum length=6, without a maximum length, the characters must be at the begining and end.
+let testResult = pattern.test(username1); // nice method on the pattern; we pass it the parameter username.
 
-let result = pattern.test(username1); // nice method on the pattern; we pass the username to be evaluated.
-console.log(`The result of the RegEx validation rule on ${username} is ${result}`);
-if(result){
+console.log(`The result of the RegEx validation rule on ${username1} is ${testResult}`);
+if(testResult){
     console.log('regex test passed :) ');
 } else {
     console.log('regex test fail :( ');
 }
 
-// Other methods we can use (below):
-let result2 = username1.search(pattern); // method on the string, we pass the pattern
-console.log(result2); // this outputs an integer: 0 zero means = match the first position, -1 means it does not match
+// Another method we can use (below) with same username and same pattern:
+let testResult2 = username1.search(pattern); // this time, the method is on the string (username1) and, we pass the parameter pattern.
+console.log(`Test result with new method: ${testResult2}`); // this outputs an integer: 0 zero which means = match the first position (-1 would mean it does not match?)
 
-const username2 = '34567shaunp3434345';
-const pattern2 = /[a-z]{6,}/;
-let result3 = username2.search(pattern2);
-console.log(result3); // Output = 5 (the match only begins to happen on the 5th position of the evaluated username2).
+const username2 = '34567shaunp3434345'; // different value.
+const pattern2 = /[a-z]{6,}/; // same pattern as above
+let testResult3 = username2.search(pattern2);
+console.log(`Test result with new method and new value: ${testResult3}`); // Output = 5 (the match only begins to happen on the 5th position of the evaluated username2).
 
-// Basic form validation (Tutorial #7 - item #62)
+// #### Basic form validation (Tutorial #7 - item #62)
 const form2 = document.querySelector('.signup-form');
-const feedback = document.querySelector('.feedback');
+const feedback = document.querySelector('.feedback'); // The HTML has a feedback class: <div class="feedback"></div>
 
 form2.addEventListener('submit', e => {
-    // e.preventDefault();
-    console.log(e);
+    e.preventDefault();
+    console.log(`This is a type of event--> ${e}`);
     // validation of what the user enters in the form:
     const myUserName = form2.username.value;
-    const usernamePattern = /^[a-zA-Z]{6,12}$/;
-    if(usernamePattern.test(myUserName)){
-        feedback.textContent = 'this username is valid!';
+    const newPattern = /^[a-zA-Z]{6,12}$/; // will enforce characters (lowercases OR uppercases).
+
+    if(newPattern.test(myUserName)){
+        feedback.textContent = 'Well done! This username is valid';
     } else {
-        feedback.textContent = 'username must contain letters only & be between 6 and 12 characters long';
+        feedback.textContent = 'This username should contain letters only & be between 6 and 12 characters long';
     }
   }
 ); 
+//  #### Keyboard Events (Tutorial #7 - item #63)
+// Use case: as you type the keyboard, the form could react with different colours to progressively validate the input
+// This works, not when pushing the key down but when lifting the finger up to release the key.
+form.username.addEventListener('keyup',
+  e => {
+    console.log(`This is the event: ${e}`); // Output = [object KeyboardEvent]
+    console.log(`This is the target of the event: ${e.target}`); // Output = [object HTMLInputElement]
+      console.log(e.target.value, form.username.value); // just 2 different ways to see the same value.
+
+  }
+);
