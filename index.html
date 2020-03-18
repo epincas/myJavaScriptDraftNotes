@@ -20,6 +20,12 @@
         margin:10px auto;
         padding: 4px;
       }
+      .successRegExValidation{
+        border: 2px solid limegreen;
+      }
+      .errorRegExValidation{
+        border: 2px solid crimson;
+      }
     </style>
 
   </head>
@@ -57,7 +63,7 @@
       <div class="feedback"></div>
     </form>
     <script src="sandbox.js"></script>
-    <!-- only call JS after parsing all the html code so tha the whole DOM is completely generated.
+    <!-- only call JS after parsing all the html code so that the whole DOM is completely generated.
     Alternatively, insert the attribut defer in the script opening tag so that the script will wait until
     the whole html page is completely BEFORE before making the call to the script -->
   </body>

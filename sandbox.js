@@ -602,14 +602,14 @@ console.log(`Test result with new method and new value: ${testResult3}`); // Out
 // #### Basic form validation (Tutorial #7 - item #62)
 const form2 = document.querySelector('.signup-form');
 const feedback = document.querySelector('.feedback'); // The HTML has a feedback class: <div class="feedback"></div>
+const newPattern = /^[a-zA-Z]{6,12}$/; // will enforce characters (lowercases OR uppercases).
 
 form2.addEventListener('submit', e => {
     e.preventDefault();
     console.log(`This is a type of event--> ${e}`);
     // validation of what the user enters in the form:
     const myUserName = form2.username.value;
-    const newPattern = /^[a-zA-Z]{6,12}$/; // will enforce characters (lowercases OR uppercases).
-
+    
     if(newPattern.test(myUserName)){
         feedback.textContent = 'Well done! This username is valid';
     } else {
@@ -619,12 +619,20 @@ form2.addEventListener('submit', e => {
 ); 
 //  #### Keyboard Events (Tutorial #7 - item #63)
 // Use case: as you type the keyboard, the form could react with different colours to progressively validate the input
-// This works, not when pushing the key down but when lifting the finger up to release the key.
+// This works, not when pushing the key down but when lifting the finger up to release the key (based on the keyup type of event).
+
 form.username.addEventListener('keyup',
   e => {
-    console.log(`This is the event: ${e}`); // Output = [object KeyboardEvent]
-    console.log(`This is the target of the event: ${e.target}`); // Output = [object HTMLInputElement]
-      console.log(e.target.value, form.username.value); // just 2 different ways to see the same value.
-
+    console.log(e); // Output = [object KeyboardEvent]-> we can see all the properties of this object (such as the populated key by the user).
+    // console.log(`This is the target of the event: ${e.target}`); // Output = [object HTMLInputElement]
+    // console.log(e.target.value, form.username.value); // just 2 different ways to see the same value.
+    if(newPattern.test(e.target.value)){ // verifies if what your are writting matches the RegEx formula.
+        console.log('passed');
+        form.username.setAttribute('class', 'successRegExValidation');
+    } else {
+        form.username.setAttribute('class', 'errorRegExValidation');
+    }
   }
 );
+
+//Project - Interactive Ninja Quiz (Tutorial #8 - item #64)
