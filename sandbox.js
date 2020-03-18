@@ -614,5 +614,5 @@ form2.addEventListener('submit', e => {
     } else {
         feedback.textContent = 'username must contain letters only & be between 6 and 12 characters long';
     }
-}
-);
+  }
+); 
