@@ -11,7 +11,11 @@ addForm.addEventListener(
         e.preventDefault(); //preventing the page from reloading
         const todo = addForm.add.value.trim(); // the method .trim() removes spaces accidentally inserted
         console.log(todo); // this is what we nave to add to the DOM
-        generateTemplateString(todo); // sending this new todo item the DOM through a function we prepare for that. 
+        if(todo.length){ // because we trim the value before, even if entering a space, the task will not be added because the user is not entering a value.
+            generateTemplateString(todo); // sending this new todo item the DOM through a function we prepare for that. 
+            addForm.reset(); // it cleans all the input field of the form.
+        };
+        
     }
 );
 
@@ -28,3 +32,7 @@ const generateTemplateString = todoParam => {
 const list = document.querySelector('.todos'); // we can grab it through the class .todos
 
 // step#3: if user insert empty task, this should not be added as a new TextTrackList.
+// check if the .length() of todo (line 14) is true AFTER todo being trimmed (line 12).
+
+// step#4: after adding the task to the list, clean the form.
+// leverage the method .reset() on the form, right after sending the templateString to the DOM (line 16)
