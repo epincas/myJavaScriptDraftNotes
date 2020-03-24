@@ -1,3 +1,4 @@
+// Section 10- Project - Todo List
 // Adding a new todo item leveraging the form.
 // We want: when inserting a new todo item, avoid the page from refreshing and add the item to the list.
 
@@ -36,3 +37,5 @@ const list = document.querySelector('.todos'); // we can grab it through the cla
 
 // step#4: after adding the task to the list, clean the form.
 // leverage the method .reset() on the form, right after sending the templateString to the DOM (line 16)
+
+// Deleting Todos (80)
