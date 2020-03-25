@@ -18,3 +18,7 @@ body{
   .delete{
     cursor: pointer;
   }
+  /* Logical rule that displays or hides based on whether an element has the class .filtered*/
+  .filtered{
+    display:none !important;
+  }
