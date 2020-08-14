@@ -1,37 +1,5 @@
-// Tutorial # 5 - Objects https://youtu.be/X0ipw1k7ygU
-// Objects have: a) Properties and b) Methods.
-// JavaScript has some built-in objects (day, math) but it also allows us to create our own objects (with object literal notation).
+// Tutorial # 5 
 
-// *** creating objects with object literals: with curly braces and key:value pairs to represent its properties seperated by comas.
-let user = {
-    name: 'crystal',
-    age: 30,
-    email: 'crystal@thenetninja.co.uk',
-    location: 'berlin',
-    blogs: ['why mac & cheese rules', '10 things to make with marmite']
-};
-console.log(user);
-
-console.log(user.name); // Output = crystal
-user.age = 35; // this is to simply reassign a new value to a property of the object.
-console.log(user.age);
-
-//Another way to access or update the properties of an object using square brackets [ ] instead of dot notation.
-console.log(user['name']);
-console.log(user['age']);
-console.log(user['email']);
-user['name'] = 'chun-li'; // re-assigning the value of the property name.
-console.log(user['name']);
-
-// most of the times, we use dot notation but...
-// ... when we need to reassign a new value to a property by passing such new value THROUGH A VARIABLE, then the square bracket approach is the only one that allows you to do so:
-const myVar = 'Edward';
-
-user['name'] = myVar;
-console.log(user.name);
-
-// typeof(): to find out the type of an object.
-console.log(typeof user); // Output = object
 
 // How to add methods to an object? ( you do that by, like when adding properties, adding a key:value pair)
 let user2 = {
