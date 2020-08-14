@@ -3,7 +3,7 @@ FUNCTIONS AND METHODS:
 A function falls in the bag of data types called Object;
 A function is a block of code which you can call and execute whenever you want;
 You can pass input values to functions and obtain output values from them.
- ***********/
+ ************/
 
 // FUNCTION DECLARATION: write out the "function" keyword, the name of the function, parenthesis and...
 // curly braces {} for the code block;
@@ -116,7 +116,10 @@ const calcVolCylinder = function (area, height = 10){
 let volume = calcVolCylinder(area);
 console.log('The volum of the cylinder calculated by function calcVolCylinder is', volume);
 
-// ARROW FUNCTIONS: cleaner and shorter syntax.
+
+/*************
+ARROW FUNCTIONS: cleaner and shorter syntax.
+*************/
 // Example of 'translating" the first version of our calcAre function into an Arrow function:
 
 const calcAreaArrow = (radius) => {
@@ -143,9 +146,145 @@ myVariable();
 
 // if the function's code block can be done with 1 single RETURN line,...
 // ... we can omit the RETURN keyword AND the curly braces of the code block, like this:
+// Example:
 
 const calcAreaSuperClean = radius => 3.14 * radius**2;
 
 const areaSuperClean = calcAreaSuperClean(5);
 console.log('One line return code-block => super clean function & same results! ', areaSuperClean); // Output = 78.5
+
+// Another example:
+const myMessage = mssg =>  console.log(mssg);
+
+myMessage('Hi there! this function was super clean!');
+
+// Exercise 1: convert the following function Expression into an arrow function:
+const greetFxExpression = function(){
+    return 'hello, world!';
+};
+let gExpressionFx = greetFxExpression();
+console.log('From an normal Expression Function',gExpressionFx);
+
+// Solution #1: the "translation" into an ARROW function (I change the name variable):
+
+const greetArrowFx = () => 'hello, world!';
+let gArrowFX = greetArrowFx();
+console.log('From Arrow Function:', gArrowFX);
+
+// Exercise #2: convert the following function Expression to an ARROW function: 
+const bill = function(products, tax){
+    let total = 0;
+    for(let i = 0; i< products.length; i++){
+        total += products[i] + products[i] * tax; // prod. price + (prod. price * tax);
+    }
+    return total;
+}
+
+console.log(bill([10,15,30], 0.2)); // I am directly invoking the function from within console.log();
+
+// Solution #2: the "translation" into an ARROW function (I change the name variable):
+const billArrow = (products, tax) => {
+    let total = 0;
+    for(let i = 0; i< products.length; i++){
+        total += products[i] + products[i] * tax;
+    }
+    return total;
+};
+
+console.log('calculated through the Arrow function:', billArrow([10,15,30], 0.2));
+
+/*************
+ * Difference between FUNCTION & METHOD
+ * We use METHODS on DATA TYPES or OBJECTS (objects are 1 of the 7 Data types in JS);
+ * A method is a function which is invoked by an OBJECT OR a DATA TYPE (like a string).
+ * In both, functions and methods, we use parenthesis and can pass an argument;
+ * The METHOD is invoked with DOT NOTATION: <value><dot notation><method>;
+ * Functions are not invoked by a <value>, instead they are invoked on their own; Ex:
+ * Ex: greetFx('hello'); --> this would invoke a function called "greetFx" with an argument "hello";
+ * METHODS are declared inside an OBJECT or DATA TYPE whereas a regular function was just defined ...
+ * ... on its own by the Developer (NOT on an Object or Data Type), ex. of fx: const greet = () > 'hello';
+ **************/
+
+// Here is a simple METHOD called "toUpperCase();" which is invoked by the string variable "name":
+const name = 'shaun';
+let resultTwo = name.toUpperCase();
+console.log("The METHOD .toUpperCase() on the string variable name results in: ", resultTwo);
+
+// in the future we will create our own METHODS on our own OBJECTS and we will also use many...
+// ... METHODS already built into the JavaScript language like "toUpperCase()";
+
+/*************
+CALL BACK FUNCTIONS: is the FUNCTION we pass to another FUNCTION as an ARGUMENT.
+ *************/
+
+// Below, this is a function accepting a parameter "myCallBackFunc";
+const myFunc = (myCallBackFunc) => { 
+    let value1 = 25;
+    let value2 = value1 * 2;
+    myCallBackFunc(value2); // invoking the received parameter which happens to be a function;
+};
+
+// Below, I am invoking the above function and passing an argument which happens to be a function;
+// This ARGUMENT function is the CALLBACK function!
+myFunc(value2 => {
+        console.log(value2);
+    }
+);
+
+/********************
+The ".foreach" METHOD
+ ********************/
+
+ // ".foreach" is a built-in ARRAY method that iterates over an array and expects a CALLBACK function;
+
+let people = ['mario', 'luigi', 'ryu', 'shaun', 'chun-li'];
+
+people.forEach((myElement, myIndex) => {
+    console.log(myIndex, myElement);
+});
+
+// Instead of passing the whole transcript of the callback function as an argument of ...
+// ... the ".foreach()" method, we could store that callback function in a variable and then ...
+// ... pass such variable to the ".foreach()" method:
+
+let people2 = ['mario', 'luigi', 'ryu', 'shaun', 'chun-li'];
+
+const myCallBackFunc2 = (myElement, myIndex) => {
+    console.log(`${myIndex} - Hello ${myElement}`);
+};
+
+console.log("************");
+people2.forEach(myCallBackFunc2);
+
+// If the CALLBACK function is a bit long, this could be helpful (it modularises/externalises...
+// ... the code) but if the CALLBACK function is short, it is probably not worth and can be...
+// ... shorter to write it directly into the invoking METHOD "myCallBackFunc2".
+
+// CALLBACK functions in action ([?] difficult to understand at this stage of the course):
+// Insert this html code:     <ul class="myElement"></ul>
+// get a reference to a'ul' (video time: 39:17 )
+const ul = document.querySelector('.myElement'); // First, get a reference to an element on the page:
+                                              // we want the <ul>, that is where we are going to
+                                              // inject our html; this will be explained later
+                                              // (we are not expected to understand this yet).
+
+const people3 = ['mario3', 'luigi3', 'ryu3', 'shaun3', 'chun-li3'];
+
+let myHtml = ``;
+
+people3.forEach(
+    person => {
+        myHtml += `<li style="color: purple">${person}</li>`;
+    }
+);
+
+console.log(myHtml);
+
+ul.innerHTML = myHtml;  // we invoke the method .innerHTML on the variable ul (which has grabed ...
+                        // ... the html element) and, we assign to it the myHtml value we...
+                        // ... have created by iterating the array; this places the value of...
+                        // ... myHtml inside the variable ul; that is only one use of the ...
+                        // ... method .forEach() and its callback function:
+                        // to create some html template for data we want to display on ...
+                        // the html page.
 
